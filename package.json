@@ -1,0 +1,28 @@
+{
+  "name": "texgen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashishcodes4/TexGen.git"
+  },
+  "author": "Ashish Singh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ashishcodes4/TexGen/issues"
+  },
+  "homepage": "https://github.com/ashishcodes4/TexGen#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.0",
+    "mongoose": "^5.2.4",
+    "nodemon": "^1.18.3",
+    "passport": "^0.4.0"
+  }
+}
