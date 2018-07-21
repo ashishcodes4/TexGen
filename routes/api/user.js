@@ -4,19 +4,15 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-
 //@Route    /api/user/test
 //@Desc     testing ground for user route
 //@Access   Public
 
 Router.get('/test', (req, res) => {
-    res.json({msg: "This is the test page for user profile"});
-})
+  res.json({ msg: 'This is the test page for user profile' });
+});
 
-
-Router.post('/register', (req, res) => {
-
-})
+Router.post('/register', (req, res) => {});
 
 //@Route    /api/user/login
 //@Desc     get any user logged in
@@ -32,6 +28,4 @@ Router.post(
   })
 );
 
-
 module.exports = Router;
-
