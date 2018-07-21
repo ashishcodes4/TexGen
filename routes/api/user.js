@@ -1,7 +1,8 @@
 const express = require('express');
 const Router = express.Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 
 //@Route    /api/user/test
@@ -13,7 +14,9 @@ Router.get('/test', (req, res) => {
 })
 
 
+Router.post('/register', (req, res) => {
 
+})
 
 //@Route    /api/user/login
 //@Desc     get any user logged in
@@ -29,4 +32,6 @@ Router.post(
   })
 );
 
+
+module.exports = Router;
 

@@ -23,10 +23,10 @@ mongoose.connect(db)
 
 
 //passport middleware
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 //passport config
-require('./config/passport')(passport);
+// require('./config/passport')(passport);
 
 //Route Setup....
 const user = require('./routes/api/user');
