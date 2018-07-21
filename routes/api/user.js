@@ -9,8 +9,10 @@ const gravatar = require('gravatar');
 //Load user Model
 const User = require('../../models/User');
 
-//Load Register inpit valdation
+//Load Register input valdation
 const validateRegisterInput = require('../../Validator/register');
+//Load Login input validation
+const validateLoginInput = require('../../Validator/login');
 
 //@Route    /api/user/test
 //@Desc     testing ground for user route
@@ -65,14 +67,53 @@ Router.post('/register', (req, res) => {
 //@Desc     get any user logged in
 //@Access   Private
 
-Router.post(
-  '/login',
-  passport.authenticate('jwt', { session: false }, (req, res) => {
-    const errors = {};
-    User.findOne({ user: req.user.id }).then(user => {
-      res.json(user);
+Router.post('/login', (req, res) => {
+  // Validate Input...
+  const { isValid, errors } = validateLoginInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // check if user exists
+  User.findOne({ email }).then(user => {
+    //check for user
+    if (!user) {
+      errors.email = 'email not found';
+      return res.status(404).json(errors);
+    }
+    //check password
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+        //User matched.....
+        const payload = {
+          id: user.id,
+          name: user.name,
+          avatar: user.avatar,
+          username: user.username,
+        }; // JWT Payload
+
+        //Sign Token....
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          { expiresIn: 3600 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer  ' + token,
+            });
+          }
+        );
+      } else {
+        errors.password = 'password is incorrect';
+        return res.status(404).json(errors);
+      }
     });
-  })
-);
+  });
+});
 
 module.exports = Router;
