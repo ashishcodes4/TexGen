@@ -4,4 +4,29 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 
-//Get user loged in 
+//@Route    /api/user/test
+//@Desc     testing ground for user route
+//@Access   Public
+
+Router.get('/test', (req, res) => {
+    res.json({msg: "This is the test page for user profile"});
+})
+
+
+
+
+//@Route    /api/user/login
+//@Desc     get any user logged in
+//@Access   Private
+
+Router.post(
+  '/login',
+  passport.authenticate('jwt', { session: false }, (req, res) => {
+    const errors = {};
+    User.findOne({ user: req.user.id }).then(user => {
+      res.json(user);
+    });
+  })
+);
+
+
