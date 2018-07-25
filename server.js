@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/api/user', user);
-app.use('/api/problem', problem);
+app.use('/api/product', product);
 
 //Config DB...
 const db = require('./config/keys.js').mongoURI;

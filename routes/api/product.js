@@ -15,14 +15,10 @@ Router.get('/test', (req, res) => {
   });
 });
 
-//@Route    /api/problem/add
+//@Route    /api/product/add
 //@Desc     testing ground for user route
 //@Access   Public
 
-Router.post('/add', (req, res) => {
-  const errors = {};
-  
-})
 
 //Export Router Module
 module.exports = Router;
