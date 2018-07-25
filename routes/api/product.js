@@ -1,8 +1,8 @@
 const express = require('express');
 const Router = express.Router();
 
-//Load Profile data model
-const Problem = require('../../models/Problem');
+//Load Product data model
+const Product = require('../../models/Product');
 
 
 //@Route    /api/problem/test
@@ -16,8 +16,23 @@ Router.get('/test', (req, res) => {
 });
 
 //@Route    /api/product/add
-//@Desc     testing ground for user route
+//@Desc     add products
 //@Access   Public
+
+Router.post('/add', (req, res) => {
+  const errors = {};
+  const newProduct = new Product ({
+    name: req.body.name,
+  });
+  newProduct.save()
+    .then(product => {
+      res.status(200).json(product);
+    })
+    .catch(err => {
+      errors.error = err;
+      res.status(404).json(errors);
+    })
+})
 
 
 //Export Router Module

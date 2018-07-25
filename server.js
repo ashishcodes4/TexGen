@@ -8,7 +8,7 @@ const cors = require('cors');
 
 //Route Setup....
 const user = require('./routes/api/user');
-const problem = require('./routes/api/problem');
+const product = require('./routes/api/product');
 
 //App middleware
 app.use(bodyParser.urlencoded({ extended: true }));
