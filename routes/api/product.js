@@ -18,35 +18,13 @@ Router.get('/test', (req, res) => {
 //@Desc     add products
 //@Access   Public
 
-// Router.post('/add', (req, res) => {
-//   const errors = {};
-//   let newProduct = {};
-//   let features = {};
-//   if (req.body.name) newProduct.name = req.body.name;
-//   newProduct.feature = [];
-//   if (req.body.features !== 'undefined') {
-//     features = req.body.features.split(',');
-//   }
-//   newProduct.features.unshift(features);
-//   new Product(newProduct)
-//     .save()
-//     .then(product => {
-//       res.json(product);
-//     })
-//     .catch(err => {
-//       errors.error = err;
-//       res.status(400).json(errors);
-//     });
-// });
-
 Router.post('/add', (req, res) => {
+  debugger;
   const str = req.body.features;
-  const features = str.split(',');
-  console.log(str);
-  console.log(features);
+
   const newProd = {
     name: req.body.name,
-    features: features
+    features: str,
   };
   console.log(newProd);
 
@@ -72,7 +50,7 @@ Router.post('/add', (req, res) => {
 //       res.status(400).json(product);
 //     })
 
-// })    testing route for adding products, please don't comment out.
+// })    testing route for adding products, please don't un-comment out.
 
 //Export Router Module
 module.exports = Router;
