@@ -19,13 +19,11 @@ Router.get('/test', (req, res) => {
 //@Access   Public
 
 Router.post('/add', (req, res) => {
+  const errors = {};
   debugger;
   const str = req.body.features;
 
-  const newProd = {
-    name: req.body.name,
-    features: str,
-  };
+  const newProd = req.body;
   console.log(newProd);
 
   // Add to prod array
@@ -35,6 +33,7 @@ Router.post('/add', (req, res) => {
       res.status(200).json(product);
     })
     .catch(err => {
+      errors.mongoose = 'Error while saving the new product'
       res.status(400).json(err);
     });
 });
